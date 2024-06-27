@@ -1,4 +1,5 @@
-import "./App.css";
+import "@mantine/core/styles.css";
+import { MantineProvider } from "@mantine/core";
 import { useState, useEffect } from "react";
 import { supabase } from "./services/supabaseClient";
 import Auth from "./Auth.tsx";
@@ -18,13 +19,13 @@ function App() {
   }, []);
 
   return (
-    <div className="container" style={{ padding: "50px 0 100px 0" }}>
+    <MantineProvider>
       {!session ? (
         <Auth />
       ) : (
         <Account key={session.user.id} session={session} />
       )}
-    </div>
+    </MantineProvider>
   );
 }
 
